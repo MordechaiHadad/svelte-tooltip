@@ -13,8 +13,7 @@
 		use:tooltip={{
 			text: 'Test!',
 			orientation: 'horizontal',
-			class: "-mx-2"
+			class: '-mx-2'
 		}}>Hello there!</button
 	>
 </div>
-

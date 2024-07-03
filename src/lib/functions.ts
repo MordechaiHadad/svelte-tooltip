@@ -1,4 +1,4 @@
-import type { Orientation, Alignment, Position } from "./types.js";
+import type { Orientation, Alignment, Position } from './types.js';
 
 export const getDynamicPosition = (
 	node: HTMLElement,

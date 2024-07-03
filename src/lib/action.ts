@@ -16,7 +16,7 @@ export function tooltip(
 		tooltipStore.update(() => ({
 			isHovered: true,
 			text: props.text,
-			orientation: props.orientation || "horizontal",
+			orientation: props.orientation || 'horizontal',
 			spawnerRect: rect,
 			class: props.class || ''
 		}));
