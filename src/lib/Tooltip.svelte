@@ -58,7 +58,7 @@
 
 <div
 	style:display={$tooltipStore.isHovered ? 'block' : 'none'}
-	class={twMerge('absolute', $$props.class)}
+	class={twMerge('absolute z-50', $$props.class)}
 	bind:this={self}
 	style="top: {position.y}px; left: {position.x}px;"
 >
