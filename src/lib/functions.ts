@@ -24,7 +24,5 @@ export const getDynamicPosition = (
 		}
 	}
 
-	console.log(spawnerCoordinates.x, rect.width, spawnerCoordinates.x + rect.width, windowWidth)
-
 	return position;
 };

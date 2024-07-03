@@ -14,12 +14,7 @@ export function tooltip(
 			isHovered: true,
 			text: props.text,
 			orientation: props.orientation,
-			spawnerCoordinates: {
-				right: rect.right,
-				bottom: rect.bottom,
-				left: rect.left,
-				top: rect.top
-			}
+			spawnerRect: rect
 		}));
 	};
 
