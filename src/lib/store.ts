@@ -6,6 +6,7 @@ interface ITooltipStore {
 	text: string;
 	spawnerRect: Rect;
 	orientation: Orientation;
+	class: string;
 }
 
 export const tooltipStore: Writable<ITooltipStore> = writable({
@@ -13,4 +14,5 @@ export const tooltipStore: Writable<ITooltipStore> = writable({
 	text: '',
 	spawnerRect: new Rect(),
 	orientation: 'horizontal',
+	class: ''
 });

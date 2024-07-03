@@ -3,16 +3,17 @@
 	import Tooltip from '$lib/Tooltip.svelte';
 </script>
 
-<Tooltip class="bg-gray-400 -mx-2" />
+<Tooltip class="bg-gray-400" />
 
-<div class="h-[60rem]" />
+<!-- <div class="h-[60rem]" /> -->
 <div class="flex">
-	<div class="w-[95%]" />
+	<div class="w-[35%]" />
 	<button
 		class="text-nowrap"
 		use:tooltip={{
 			text: 'Test!',
-			orientation: 'horizontal'
+			orientation: 'horizontal',
+			class: "-mx-2"
 		}}>Hello there!</button
 	>
 </div>

@@ -4,9 +4,11 @@
 	import { getDynamicPosition } from './functions.js';
 	import { afterUpdate, onMount } from 'svelte';
 	import type { Position } from './types.js';
+	import { fade } from 'svelte/transition';
+
+	export let transition = fade;
 
 	let self: HTMLElement;
-
 	let position: Position = { x: 0, y: 0 };
 
 	afterUpdate(() => {
@@ -50,17 +52,20 @@
 					x: spawnerCoordinates.right,
 					y: 0 < center.y ? center.y : 0
 				};
+			console.log(spawnerCoordinates.right, $tooltipStore.text)
 		} else if (!$tooltipStore.isHovered) {
 			position = { x: 0, y: 0 };
 		}
 	});
 </script>
 
-<div
-	style:display={$tooltipStore.isHovered ? 'block' : 'none'}
-	class={twMerge('absolute z-50', $$props.class)}
-	bind:this={self}
-	style="top: {position.y}px; left: {position.x}px;"
->
-	{$tooltipStore.text}
-</div>
+{#if $tooltipStore.isHovered}
+	<div
+		transition:transition
+		class={twMerge('absolute z-50', $$props.class, $tooltipStore.class)}
+		bind:this={self}
+		style="top: {position.y}px; left: {position.x}px;"
+	>
+		{$tooltipStore.text}
+	</div>
+{/if}

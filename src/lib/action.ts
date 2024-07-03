@@ -3,18 +3,22 @@ import type { Orientation } from './types.js';
 
 export function tooltip(
 	node: HTMLElement,
-	props: { text: string; orientation: Orientation } = { text: '', orientation: 'horizontal' }
+	props: { text: string; orientation?: Orientation; class?: string } = {
+		text: '',
+		orientation: 'horizontal',
+		class: ''
+	}
 ) {
 	const showTooltip = (event: MouseEvent) => {
 		const target = event.target as HTMLElement;
 		const rect = target.getBoundingClientRect();
 
-		tooltipStore.update((store) => ({
-			...store,
+		tooltipStore.update(() => ({
 			isHovered: true,
 			text: props.text,
-			orientation: props.orientation,
-			spawnerRect: rect
+			orientation: props.orientation || "horizontal",
+			spawnerRect: rect,
+			class: props.class || ''
 		}));
 	};
 
