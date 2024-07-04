@@ -19,6 +19,7 @@
 				x: spawnerCoordinates.right,
 				y: spawnerCoordinates.bottom
 			};
+			console.log(spawnerPosition);
 
 			const alignment = getDynamicPosition(self, spawnerPosition, $tooltipStore.orientation);
 
@@ -52,7 +53,6 @@
 					x: spawnerCoordinates.right,
 					y: 0 < center.y ? center.y : 0
 				};
-			console.log(spawnerCoordinates.right, $tooltipStore.text);
 		} else if (!$tooltipStore.isHovered) {
 			position = { x: 0, y: 0 };
 		}

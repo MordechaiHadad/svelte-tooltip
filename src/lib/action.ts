@@ -10,7 +10,7 @@ export function tooltip(
 	}
 ) {
 	const showTooltip = (event: MouseEvent) => {
-		const target = event.target as HTMLElement;
+		const target = event.currentTarget as HTMLElement;
 		const rect = target.getBoundingClientRect();
 
 		tooltipStore.update(() => ({
