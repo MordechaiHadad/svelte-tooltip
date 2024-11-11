@@ -12,7 +12,7 @@
 		class="text-nowrap"
 		use:tooltip={{
 			text: 'Test!',
-			orientation: 'horizontal',
+			orientation: 'horizontal'
 		}}>Hello there!</button
 	>
 </div>

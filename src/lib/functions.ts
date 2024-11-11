@@ -1,15 +1,16 @@
 import type { Orientation, Alignment, Position } from './types.js';
 
 export const getDynamicPosition = (
-	node: HTMLElement,
+	node: HTMLElement | undefined,
 	spawnerCoordinates: Position,
 	orientation: Orientation
 ): Alignment => {
 	let position: Alignment = 'top';
 
-	const rect = node.getBoundingClientRect();
+	const rect = node?.getBoundingClientRect();
 	const windowHeight = window.innerHeight;
 	const windowWidth = window.innerWidth;
+	if (!rect) return position;
 	if (orientation === 'vertical') {
 		if (spawnerCoordinates.y + rect.height > windowHeight) {
 			position = 'top';

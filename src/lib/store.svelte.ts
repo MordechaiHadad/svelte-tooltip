@@ -1,4 +1,3 @@
-import { writable, type Writable } from 'svelte/store';
 import { Rect, type Orientation } from './types.js';
 
 interface ITooltipStore {
@@ -9,7 +8,7 @@ interface ITooltipStore {
 	class: string;
 }
 
-export const tooltipStore: Writable<ITooltipStore> = writable({
+export let tooltipStore: ITooltipStore = $state({
 	isHovered: false,
 	text: '',
 	spawnerRect: new Rect(),

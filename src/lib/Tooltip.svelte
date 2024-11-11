@@ -1,26 +1,26 @@
 <script lang="ts">
 	import { twMerge } from 'tailwind-merge';
-	import { tooltipStore } from './store.js';
 	import { getDynamicPosition } from './functions.js';
-	import { afterUpdate, onMount } from 'svelte';
-	import type { Position } from './types.js';
+	import { type Position } from './types.js';
 	import { fade } from 'svelte/transition';
+	import { tooltipStore } from './store.svelte.js';
 
-	export let transition = fade;
+	let { transition = fade, class: className = '' } = $props();
 
-	let self: HTMLElement;
-	let position: Position = { x: 0, y: 0 };
+	let self: HTMLElement | undefined = $state(undefined);
+	let position: Position = $state({ x: 0, y: 0 });
 
-	afterUpdate(() => {
-		if ($tooltipStore.isHovered) {
-			let elementRect = self.getBoundingClientRect();
-			const spawnerCoordinates = $tooltipStore.spawnerRect;
+	$effect(() => {
+		if (tooltipStore.isHovered) {
+			let elementRect = self?.getBoundingClientRect();
+			if (!elementRect) return;
+			const spawnerCoordinates = tooltipStore.spawnerRect;
 			const spawnerPosition = {
 				x: spawnerCoordinates.right,
 				y: spawnerCoordinates.bottom
 			};
 
-			const alignment = getDynamicPosition(self, spawnerPosition, $tooltipStore.orientation);
+			const alignment = getDynamicPosition(self, spawnerPosition, tooltipStore.orientation);
 
 			const spawnerXCenter = (spawnerCoordinates.left + spawnerCoordinates.right) / 2;
 			const spawnerYCenter = (spawnerCoordinates.top + spawnerCoordinates.bottom) / 2;
@@ -52,19 +52,19 @@
 					x: spawnerCoordinates.right,
 					y: 0 < center.y ? center.y : 0
 				};
-		} else if (!$tooltipStore.isHovered) {
+		} else if (!tooltipStore.isHovered) {
 			position = { x: 0, y: 0 };
 		}
 	});
 </script>
 
-{#if $tooltipStore.isHovered}
+{#if tooltipStore.isHovered}
 	<div
 		transition:transition
-		class={twMerge('absolute z-50', $$props.class, $tooltipStore.class)}
+		class={twMerge('absolute z-50', className, tooltipStore.class)}
 		bind:this={self}
 		style="top: {position.y}px; left: {position.x}px;"
 	>
-		{$tooltipStore.text}
+		{tooltipStore.text}
 	</div>
 {/if}

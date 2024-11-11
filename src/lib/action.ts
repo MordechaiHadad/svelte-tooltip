@@ -1,4 +1,4 @@
-import { tooltipStore } from './store.js';
+import { tooltipStore } from './store.svelte.js';
 import type { Orientation } from './types.js';
 
 export function tooltip(
@@ -13,20 +13,15 @@ export function tooltip(
 		const target = event.currentTarget as HTMLElement;
 		const rect = target.getBoundingClientRect();
 
-		tooltipStore.update(() => ({
-			isHovered: true,
-			text: props.text,
-			orientation: props.orientation || 'horizontal',
-			spawnerRect: rect,
-			class: props.class || ''
-		}));
+		tooltipStore.isHovered = true;
+		tooltipStore.text = props.text;
+		tooltipStore.orientation = props.orientation || 'horizontal';
+		tooltipStore.spawnerRect = rect;
+		tooltipStore.class = props.class || '';
 	};
 
 	const hideTooltip = () => {
-		tooltipStore.update((store) => ({
-			...store,
-			isHovered: false
-		}));
+		tooltipStore.isHovered = false;
 	};
 
 	node.addEventListener('mouseover', showTooltip);
